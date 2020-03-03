@@ -39,8 +39,6 @@ class _QuizPageState extends State<QuizPage> {
 //    ),
   ];
 
-  int questionNumber = 0;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -53,7 +51,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBtain.getQuestionText(questionNumber),
+                quizBtain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -77,8 +75,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer =
-                    quizBtain.getQuestionAnswer(questionNumber);
+                bool correctAnswer = quizBtain.getQuestionAnswer();
                 if (correctAnswer == true) {
                   print('Correct!');
                 } else {
@@ -86,7 +83,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  questionNumber++;
+                  quizBtain.nextQuestion();
                 });
               },
             ),
@@ -105,8 +102,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer =
-                    quizBtain.getQuestionAnswer(questionNumber);
+                bool correctAnswer = quizBtain.getQuestionAnswer();
                 if (correctAnswer == false) {
                   print('Correct!');
                 } else {
@@ -114,7 +110,7 @@ class _QuizPageState extends State<QuizPage> {
                 }
 
                 setState(() {
-                  questionNumber++;
+                  quizBtain.nextQuestion();
                 });
               },
             ),
