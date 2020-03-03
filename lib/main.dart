@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler/question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -36,19 +37,15 @@ class _QuizPageState extends State<QuizPage> {
 //    ),
   ];
 
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.',
-  ];
-
-  List<bool> answers = [
-    false,
-    true,
-    true,
-  ];
-
   int questionNumber = 0;
+
+  List<Question> questionBank = [
+    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
+    Question(
+        q: 'Approximately one quarter of human bones are in the feet.',
+        a: true),
+    Question(q: 'A slug\'s blood is green.', a: true),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +59,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber % 3],
+                questionBank[questionNumber % 3].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -86,7 +83,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = answers[questionNumber % 3];
+                bool correctAnswer =
+                    questionBank[questionNumber % 3].questionAnswer;
                 if (correctAnswer == true) {
                   print('Correct!');
                 } else {
@@ -113,7 +111,8 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = answers[questionNumber % 3];
+                bool correctAnswer =
+                    questionBank[questionNumber % 3].questionAnswer;
                 if (correctAnswer == false) {
                   print('Correct!');
                 } else {
